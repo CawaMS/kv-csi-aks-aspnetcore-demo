@@ -1,0 +1,53 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <CHOOSE_A_DEPLOYMENT_NAME: i.e.aspnetk8s-deployment>
+  labels:
+    app: <CHOOSE_AN_APP_LABEL: i.e.aspnetk8s-kub-app>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: <MATCH_TEMPLATE_APP_LABEL_ i.e.aspnetk8s-kub-app>
+  template:
+    metadata:
+      name: <CHOOSE_APP_NAME: i.e.aspnetk8s-kub-app>
+      labels:
+        app: <CHOOSE_APP_NAME:i.e.aspnetk8s-kub-app>
+        aadpodidbinding: <MATCH_SELECTOR_AZUREIDENTITYBINDING: i.e.keyvault-csi>
+    spec:
+      containers:
+        - name: <CHOOSE_A_CONTAINER_NAME: i.e.aspnetk8s-services-app>
+          image: <YOUR_DOCKER_IMAGE_NAME: i.e.youracrname.azurecr.io/aspnetk8s:v3>
+          ports:
+            - containerPort: 80
+          env:
+            - name: <NAME_OF_SECRET_CONFIG: i.e.kvsecret>
+              valueFrom:
+                secretKeyRef:
+                  name: <MATCH_NAME_OF_SCRETEOBJECT: i.e.keyvault-secret>
+                  key: <MATCH_NAME_OF_SECRETKEY: i.e.kvsecret>
+          volumeMounts:
+            - name: <MATCH_VOLUMNE_NAME: i.e.secrets-store-inline>
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
+      volumes:
+        - name: <CHOOSE_A_NAME: i.e.secrets-store-inline>
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "<MATCH_SECRETPROVIDERCLASSNAME: i.e.azure-keyvault>"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aspnetk8s-kub-app
+spec:
+  ports:
+    - name: http-port
+      port: 80
+      targetPort: 80
+  selector:
+    app: <MATCH_DELOYMENT_LABEL: aspnetk8s-kub-app>
+  type: LoadBalancer

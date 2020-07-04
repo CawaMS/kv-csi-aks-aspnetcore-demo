@@ -1,0 +1,23 @@
+﻿apiVersion: secrets-store.csi.x-k8s.io/v1alpha1
+kind: SecretProviderClass
+metadata:
+  name: <CHOOSE_A_NAME: i.e.azure-keyvault>
+spec:
+  provider: azure
+  secretObjects:
+  - secretName: <CHOOSE_SECRET_NAME: i.e.keyvault-secret>
+    type: Opaque
+    data:
+    - objectName: <NAME_OF_SECRET_USED_IN_YOUR_APP: i.e.kvsecret>
+      key: <NAME_OF_SECRET_USED_IN_YOUR_APP: i.e.kvsecret>
+  parameters:
+    usePodIdentity: "true"
+    keyvaultName: "<YOUR_KEYVAULT_NAME: i.e cawa-keyvault>"
+    objects:  |
+      array:
+        - |
+          objectName: <NAME_OF_SECRET_USED_IN_YOUR_APP: i.e.kvsecret>
+          objectType: secret
+    resourceGroup: "<YOUR_KEYVAULT_RESOURCEGROUP: i.e.myresourcegroup>"
+    subscriptionId: "<SUBSCRIPTION_ID_FOR_KEYVAULT>"
+    tenantId: "<TENANT_ID_FOR_KEYVAULT>"

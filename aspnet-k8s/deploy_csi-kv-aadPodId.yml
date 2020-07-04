@@ -1,0 +1,17 @@
+﻿apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentity
+metadata:
+  name: <CHOOSE_A_NAME: i.e.aks-pod-identity>
+spec:
+  type: 0
+  resourceID: /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP_NAME>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<YOUR_POD_IDENTITY_NAME>
+  clientID: <YOUR_POD_IDENTITY_CLIENT_ID>
+---
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentityBinding
+metadata:
+  name: <CHOOSE_A_NAME: i.e.aks-pod-identity-binding>
+spec:
+  azureIdentity: <MATCH_AZURE_IDENTITY_NAME: i.e.aks-pod-identity>
+  selector: <CHOOSE_SELECTOR_NAME: i.e.keyvault-csi>
+
