@@ -14,7 +14,7 @@ spec:
       name: <CHOOSE_APP_NAME: i.e.aspnetk8s-kub-app>
       labels:
         app: <CHOOSE_APP_NAME:i.e.aspnetk8s-kub-app>
-        aadpodidbinding: <MATCH_SELECTOR_AZUREIDENTITYBINDING: i.e.keyvault-csi>
+        aadpodidbinding: <MATCH_SELECTOR_AZUREIDENTITYBINDING: i.e.keyvault-csi in ./deploy_sci-kv-aadPodId.yml>
     spec:
       containers:
         - name: <CHOOSE_A_CONTAINER_NAME: i.e.aspnetk8s-services-app>
@@ -22,11 +22,11 @@ spec:
           ports:
             - containerPort: 80
           env:
-            - name: <NAME_OF_SECRET_CONFIG: i.e.kvsecret>
+            - name: <NAME_OF_SECRET_CONFIG: i.e.kvsecret in appsettings.json>
               valueFrom:
                 secretKeyRef:
-                  name: <MATCH_NAME_OF_SCRETEOBJECT: i.e.keyvault-secret>
-                  key: <MATCH_NAME_OF_SECRETKEY: i.e.kvsecret>
+                  name: <MATCH_NAME_OF_SCRETEOBJECT: i.e.keyvault-secret in deploy-csi-akv.yml>
+                  key: <MATCH_NAME_OF_SECRETKEY: i.e.kvsecret in deploy-csi-akv.yml>
           volumeMounts:
             - name: <MATCH_VOLUMNE_NAME: i.e.secrets-store-inline>
               mountPath: "/mnt/secrets-store"
@@ -37,7 +37,7 @@ spec:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
-              secretProviderClass: "<MATCH_SECRETPROVIDERCLASSNAME: i.e.azure-keyvault>"
+              secretProviderClass: "<MATCH_SECRETPROVIDERCLASSNAME: i.e.azure-keyvault in deploy-sci-akv.yml>"
 ---
 apiVersion: v1
 kind: Service
