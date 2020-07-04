@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cawa\\source\\repos\\aspnet-k8s\\aspnet-k8s\\aspnet-k8s.csproj": {}
+    "C:\\Users\\cawa\\source\\repos\\kv-csi-aks-aspnetcore-demo\\aspnet-k8s\\aspnet-k8s.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cawa\\source\\repos\\aspnet-k8s\\aspnet-k8s\\aspnet-k8s.csproj": {
+    "C:\\Users\\cawa\\source\\repos\\kv-csi-aks-aspnetcore-demo\\aspnet-k8s\\aspnet-k8s.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cawa\\source\\repos\\aspnet-k8s\\aspnet-k8s\\aspnet-k8s.csproj",
+        "projectUniqueName": "C:\\Users\\cawa\\source\\repos\\kv-csi-aks-aspnetcore-demo\\aspnet-k8s\\aspnet-k8s.csproj",
         "projectName": "aspnet-k8s",
-        "projectPath": "C:\\Users\\cawa\\source\\repos\\aspnet-k8s\\aspnet-k8s\\aspnet-k8s.csproj",
+        "projectPath": "C:\\Users\\cawa\\source\\repos\\kv-csi-aks-aspnetcore-demo\\aspnet-k8s\\aspnet-k8s.csproj",
         "packagesPath": "C:\\Users\\cawa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cawa\\source\\repos\\aspnet-k8s\\aspnet-k8s\\obj\\",
+        "outputPath": "C:\\Users\\cawa\\source\\repos\\kv-csi-aks-aspnetcore-demo\\aspnet-k8s\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\cawa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,18 +39,6 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
-            "Microsoft.Azure.KeyVault": {
-              "target": "Package",
-              "version": "[3.0.5, )"
-            },
-            "Microsoft.Azure.Services.AppAuthentication": {
-              "target": "Package",
-              "version": "[1.5.0, )"
-            },
-            "Microsoft.Extensions.Configuration.AzureKeyVault": {
-              "target": "Package",
-              "version": "[3.1.5, )"
-            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.10.9, )"
